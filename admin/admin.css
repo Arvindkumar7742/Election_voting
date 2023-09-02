@@ -56,7 +56,11 @@
     font-size: 1.3rem;
     font-weight: 600;
     border-radius: 50%;
+    box-shadow: 2px 5px 8px 2px #292727;
+    opacity: 0.9;
 }
 .btn:hover{
     cursor: pointer;
+    box-shadow: 2px 5px 8px 2px #2c2b2b;
+    opacity: 1;
 }
