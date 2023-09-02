@@ -49,6 +49,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+.main-child{
+    position: absolute;
 }
 .btn{
     background-color:white;
