@@ -1,7 +1,40 @@
+<?php
+$login=false;
+$showerror=false;
+
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        include("./partial/_dbconnect.php");
+        $username=$_POST['username'];
+        $password=$_POST['password'];
+            $sql="select *from users where username='$username'";
+            $result=mysqli_query($conn,$sql);
+            $row=mysqli_num_rows($result);
+            if($row==1){
+             $ent=mysqli_fetch_assoc($result);
+              if(password_verify($password,$ent['password'])){
+                $login=true;
+                session_start();
+                $_SESSION['loggedin']=true;
+                $_SESSION['username']=$username;
+                header("location:welcome.php");
+              }
+              else{
+                $showerror='Invalid credintial';
+              }
+
+            }
+        else{
+            $showerror='Invalid credintial';
+        }
+    }
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Admin-Login</title>
+		<title>Admin Log in</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -14,11 +47,11 @@
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 	</head>
-	<body class="login">
+	<body class="login" style="background-image: url(iitg1.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.html"><h2>IITG | Admin Login</h2></a>
+				<a href="../index.html" ><h2 style="font-weight: bolder;">IITG | Admin Login</h2></a>
 				</div>
 
 				<div class="box-login">
@@ -28,12 +61,11 @@
 								Sign in to your account
 							</legend>
 							<p>
-								Please enter your name and password to log in.<br />
-								<span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
+								Please enter your email and password to log in.<br />
 							</p>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Username">
+									<input type="text" class="form-control" name="username" placeholder="Email id">
 									<i class="fa fa-user"></i> </span>
 							</div>
 							<div class="form-group form-actions">
