@@ -6,7 +6,7 @@
             $sql="select *from admin where email='$email' and password='$password'";
             $result=mysqli_query($conn,$sql);
             $row=mysqli_num_rows($result);
-			echo"$row";
+
             if($row==1){
              $ent=mysqli_fetch_assoc($result);
 			//  echo"$password";
@@ -17,7 +17,7 @@
                 session_start();
                 $_SESSION['loggedin']=true;
                 $_SESSION['username']=$username;
-                header("location:admin.html");
+                header("location:/ELECTION_VOTING/admin/admin.html");
             //   }
             //   else{
 			// 	echo '<script>alert("Invalid credintial!");</script>';
