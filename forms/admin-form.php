@@ -1,30 +1,31 @@
 <?php
-$login=false;
-$showerror=false;
-
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        include("./partial/_dbconnect.php");
-        $username=$_POST['username'];
+        include("_dbconnect.php");
+        $email=$_POST['email'];
         $password=$_POST['password'];
-            $sql="select *from users where username='$username'";
+            $sql="select *from admin where email='$email' and password='$password'";
             $result=mysqli_query($conn,$sql);
             $row=mysqli_num_rows($result);
+			echo"$row";
             if($row==1){
              $ent=mysqli_fetch_assoc($result);
-              if(password_verify($password,$ent['password'])){
+			//  echo"$password";
+			//  echo var_dump(password_verify($password,$ent['password']));
+            //   if(password_verify($password,$ent['password'])){
+				// if($hash==$password){
                 $login=true;
                 session_start();
                 $_SESSION['loggedin']=true;
                 $_SESSION['username']=$username;
-                header("location:welcome.php");
-              }
-              else{
-                $showerror='Invalid credintial';
-              }
+                header("location:admin.html");
+            //   }
+            //   else{
+			// 	echo '<script>alert("Invalid credintial!");</script>';
+            //   }
 
             }
         else{
-            $showerror='Invalid credintial';
+			echo '<script>alert("Invalid credintial!");</script>';
         }
     }
 
@@ -50,11 +51,11 @@ $showerror=false;
 	<body class="login" style="background-image: url(iitg1.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-				<div class="logo margin-top-30">
-				<a href="../index.html" ><h2 style="font-weight: bolder;">IITG | Admin Login</h2></a>
-				</div>
 
 				<div class="box-login">
+				<div class="logo margin-top-10">
+				<a href="../index.html" ><h2 style="font-weight: bolder;">IITG | Admin Login</h2></a>
+				</div>
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
@@ -65,7 +66,7 @@ $showerror=false;
 							</p>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Email id">
+									<input type="text" class="form-control" name="email" placeholder="Email id">
 									<i class="fa fa-user"></i> </span>
 							</div>
 							<div class="form-group form-actions">

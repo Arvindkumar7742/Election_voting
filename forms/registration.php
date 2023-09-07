@@ -18,8 +18,7 @@
         }
         else{
         if($password==$cpassword){
-            $hash=password_hash($password,PASSWORD_DEFAULT);
-            $sql="INSERT INTO `admin` (`fullname`, `adress`, `city`, `email`, `password`, `time`) VALUES ( '$fullname', '$adress', '$city', '$email', '$hash', current_timestamp());";
+            $sql="INSERT INTO `admin` (`fullname`, `adress`, `city`, `email`, `password`, `time`) VALUES ( '$fullname', '$adress', '$city', '$email', '$password', current_timestamp());";
             $result=mysqli_query($conn,$sql);
             if($result){
                 $showalert=true;
@@ -60,11 +59,11 @@
 		<!-- start: REGISTRATION -->
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-				<div class="logo margin-top-30">
-				<a href="../index.php"><h2 style="font-weight: bolder;">IITG | Admin Registration</h2></a>
-				</div>
 				<!-- start: REGISTER BOX -->
 				<div class="box-register">
+				<div class="logo margin-top-10">
+				<a href="../index.html"><h2 style="font-weight: bolder;">IITG |Admin Registration</h2></a>
+				</div>
 					<form name="registration" id="registration"  method="post">
 						<fieldset>
 							<legend>
@@ -112,7 +111,7 @@
 							<div class="form-actions">
 								<p>
 									Already have an account?
-									<a href="./admin-form.html">
+									<a href="./admin-form.php">
 										Log-in
 									</a>
 								</p>
