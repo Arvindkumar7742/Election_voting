@@ -3,14 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>manage</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            height: 100%;
+            /* background-color: rgb(0, 14, 103); */
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+        .form-section{
+            width: 50%;
+            background-color: rgb(0,14,120);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+        .form-section input,textarea{
+            width: 400px;
+            font-size: 20px;
+            margin: 10px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border:2px solid maroon;
+            outline: none;
+        }
+        .submit-btn{
+            background-color: rgb(8, 60, 81);
+            border: 2px solid rgb(159, 149, 242);
+            color: rgb(230, 152, 152);
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .add-candidate{
+            display: flex;
+            flex-direction: column;
+        }
+        .candidate-list{
+            display: flex;
+            justify-content: center;
+            align-items:start;
+            column-gap: 30px;
+            padding: 20px;
+        }
+        .candidate-list .post-heading{
+            font-size: 26px;
+            color: aliceblue;
+        }
+        .post{
+            display: flex;
+            flex-direction: column;
+            row-gap: 30px;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(0, 14, 120);
+            padding: 15px;
+        }
+        .candidate{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid blue;
+            border-radius: 5px;
+            background-color: rgb(38, 76, 108);
+            color: 20px;
+            font-weight: 500;
+            padding: 8px;
+        }
 
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar"></div>
+    <div class="container"><p>Los?</p>
+        <div class="navbar">
+        </div>
+        <div class="main">
+            <div class="start-btn">START VOTING</div>
+            <div class="form-section">
+                <form action="" class="add-candidate">
+                    <input type="text" name="post" id="post" placeholder="Post Name">
+                    <input type="text" name="name" id="name" placeholder="Candidate Name">
+                    <input type="number" name="phone" id="phone" placeholder="Phone Number">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    <textarea name="address" id="address" cols="30" rows="7" placeholder="Address" style="resize:none"></textarea>
+                    <input type="date" name="dob" id="dob" placeholder="date of birth">
+                    <button class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div class="candidate-list">
+                <div class="post">
+                    <div class="post-heading">POST - 1</div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-heading">POST - 2</div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-heading">POST - 3</div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-heading">POST - 4</div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div>
+                    <!-- <div class="candidate">
+                        <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
     </div>
     
 </body>
