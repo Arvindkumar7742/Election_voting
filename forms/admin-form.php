@@ -16,7 +16,7 @@
                 $login=true;
                 session_start();
                 $_SESSION['loggedin']=true;
-                $_SESSION['username']=$username;
+                $_SESSION['email']=$email;
                 header("location:/ELECTION_VOTING/admin/admin.html");
             //   }
             //   else{
