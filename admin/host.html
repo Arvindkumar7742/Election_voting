@@ -81,16 +81,73 @@
             color: 20px;
             font-weight: 500;
             padding: 8px;
+            position: relative;
+        }
+        .candidate img{
+            width: 10%;
+            position: absolute;
+        }
+        .candidate .edit{
+            top: 2px;
+            left: 2px;
+            cursor: pointer;
+        }
+        .candidate .delete{
+            top: 2px;
+            right: 2px;
+            cursor: pointer;
+        }
+        .navbar{
+            display: flex;
+            background-color: rgb(96, 140, 179);
+            height: 100px;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            color: azure;
+            font-size: 30px;
+        }
+        .navbar .logout img{
+            height: 55px;
+            border: 1px solid black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .start-btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .start-voting{
+            padding: 12px 22px;
+            background-color: rgb(11, 189, 238);
+            border: 1px solid grey;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
         }
 
     </style>
 </head>
 <body>
-    <div class="container"><p>Los?</p>
+    <div class="container">
         <div class="navbar">
+            <div class="heading">
+                <h1>Admin DashBoard</h1>
+            </div>
+            <div class="logout">
+                <img src="./images/logout.png" alt="logout-icon">
+            </div>
         </div>
         <div class="main">
-            <div class="start-btn">START VOTING</div>
+            <div class="start-btn">
+                <button class="start-voting">Start Election</button>
+            </div>
             <div class="form-section">
                 <form action="" class="add-candidate">
                     <input type="text" name="post" id="post" placeholder="Post Name">
@@ -106,6 +163,8 @@
                 <div class="post">
                     <div class="post-heading">POST - 1</div>
                     <div class="candidate">
+                        <span><img class="edit" src="./images/Fa-Team-Fontawesome-FontAwesome-Pen-Fancy.svg" alt="edit"></span>
+                        <span><img class="delete" src="./images/Hopstarter-Sleek-Xp-Basic-Delete.256.png" alt="delete"></span>
                         <p>name:Santosh Josi,</p><p>phone:+91 9734786787,</p><p>email:can@candidate.com,</p><p>dob:23/05/1987.</p><p>address:bankura,bankura,West Bengal,722102.</p>
                     </div>
                     <div class="candidate">
