@@ -26,6 +26,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Dept</th>
                 <th scope="col">Age</th>
+                <th scope="col">Roll No</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                     <td>'.$row['name'].'</td>
                     <td>'.$row["dept"].'</td>
                     <td>'.$row["age"].'</td>
+                    <td>'.$row["rollno"].'</td>
                   </tr>';
                   }
               ?>
