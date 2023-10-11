@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['username'])){
+    header('location:../forms/admin-form.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +79,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 
 .admin-btn:hover {
   background-color: #1e293b;
@@ -170,11 +178,11 @@
     <div id="wrapper">
         <div class="navbar">
             <h1 class="heading">Admin Dashboard</h1>
-            <a class="logout-icon"><img src="./images/icons8-logout-50.png" alt="logout"></a>
+            <a class="logout-icon" href="logout.php"><img src="./images/icons8-logout-50.png" alt="logout"></a>
         </div>
         <div class="container">
 
-            <div class="admin-profile child">your profile
+            <!-- <div class="admin-profile child">your profile
                 <a href=""><img src="./images/arrow.png" alt="arrow"></a>
             </div>
             <div class="host-election child">host an election
@@ -182,7 +190,7 @@
             </div>
             <div class="voters child">voter section
                 <a href=""><img src="./images/arrow.png" alt="arrow"></a>
-            </div>
+            </div> -->
           
             <a href="profile.php"> <div><button class="admin-btn">Your profile        <i class="fa fa-arrow-right"></i></button></div> </a> 
             <a href="host.php"> <div><button class="cand-btn">Host an election <i class="fa fa-arrow-right"></i></button></div> </a> 
@@ -192,4 +200,6 @@
     </div>
     
 </body>
+
+</script>
 </html>

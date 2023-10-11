@@ -1,4 +1,12 @@
 <?php
+	session_start();
+	// if(!isset($_SESSION['username'])){
+	// 	header('location:../forms/admin-form.php');
+	// }
+?>
+
+
+<?php
     $server="localhost";
     $username='root';
     $password='';
@@ -15,23 +23,40 @@
 <?php
 
 
-echo $_SERVER['REQUEST_METHOD'];
+// echo $_SERVER['REQUEST_METHOD'];
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 			echo "success<br>";
 			$password = $_POST['password'];
 			$email = $_POST['email'];
-			$qq = "select * from `admin` where `email` = '$email' and `password` = '$password'";
-			echo $qq;
-			echo "<br>";
-			$result = mysqli_query($conn,$qq);
-			echo mysqli_num_rows($result);
-			// while($row = mysqli_fetch_assoc($result)){
-				echo '
+			$email_search = "select * from `admin` where `email` = '$email'";
+			// echo $qq;
+			// echo "<br>";
+			$query = mysqli_query($conn,$email_search);
+			$email_count = mysqli_num_rows($query);
+
+			if($email_count){
+				$email_pass = mysqli_fetch_assoc($query);
+				$db_pass = $email_pass['password'];
+				$_SESSION['username'] = $email_pass['email'];
+				// $pass_decode = password_verify($password,$db_pass);
+				$pass_decode = ($password==$db_pass);
+				if($pass_decode){
+					echo "login successful";
+					echo '
 					<script>
-						window.location.href = "../admin/admin.html";
+						window.location.href = "../admin/admin.php";
 					</script>
 				';
+				}
+				else{
+					echo "password wrong";
+				}
+			}
+			else{
+				echo "email not found";
+			}
+			// while($row = mysqli_fetch_assoc($result)){
 			// }
 		
     }

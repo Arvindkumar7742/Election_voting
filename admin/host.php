@@ -1,4 +1,12 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['username'])){
+        header('location:../forms/admin-form.php');
+      }
+?>
+
+
+<?php
     $server = "localhost";
     $username = "root";
     $password = "";
@@ -66,9 +74,9 @@
                 <div class="heading">
                     <h1>Admin DashBoard</h1>
                 </div>
-                <div class="logout">
+                <a class="logout" href="logout.php">
                     <img src="./images/logout.png" alt="logout-icon">
-                </div>
+                </a>
             </div>
 
             <div class="update-form" id="update-form" style="display: none;">
@@ -269,5 +277,10 @@
             document.getElementById("manage").style.display="none";
         }
         console.log(st.includes("postName"));
+    </script>
+    <script>
+        function logOut(){
+            
+        }
     </script>
 </html>
