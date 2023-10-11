@@ -10,7 +10,7 @@
     $server = "localhost";
     $username = "root";
     $password = "";
-    $database = "PayelDB";
+    $database = "election";
     
     $conn = mysqli_connect($server,$username,$password,$database);
     if(!$conn){
