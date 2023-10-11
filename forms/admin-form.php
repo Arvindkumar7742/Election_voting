@@ -1,36 +1,44 @@
 <?php
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-        include("_dbconnect.php");
-        $email=$_POST['email'];
-        $password=$_POST['password'];
-            $sql="select *from admin where email='$email' and password='$password'";
-            $result=mysqli_query($conn,$sql);
-            $row=mysqli_num_rows($result);
+    $server="localhost";
+    $username='root';
+    $password='';
+    $database='election';
+    $conn = mysqli_connect($server,$username,$password,$database);
+    if(!$conn){
+        die ( mysqli_connect_error());
+    }
+    else{
+        // echo "database connection established<br>";
+    }
+?>
 
-            if($row==1){
-             $ent=mysqli_fetch_assoc($result);
-			//  echo"$password";
-			//  echo var_dump(password_verify($password,$ent['password']));
-            //   if(password_verify($password,$ent['password'])){
-				// if($hash==$password){
-                $login=true;
-                session_start();
-                $_SESSION['loggedin']=true;
-                $_SESSION['email']=$email;
-                header("location:/ELECTION_VOTING/admin/admin.html");
-            //   }
-            //   else{
-			// 	echo '<script>alert("Invalid credintial!");</script>';
-            //   }
+<?php
 
-            }
-        else{
-			echo '<script>alert("Invalid credintial!");</script>';
-        }
+
+echo $_SERVER['REQUEST_METHOD'];
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+			echo "success<br>";
+			$password = $_POST['password'];
+			$email = $_POST['email'];
+			$qq = "select * from `admin` where `email` = '$email' and `password` = '$password'";
+			echo $qq;
+			echo "<br>";
+			$result = mysqli_query($conn,$qq);
+			echo mysqli_num_rows($result);
+			// while($row = mysqli_fetch_assoc($result)){
+				echo '
+					<script>
+						window.location.href = "../admin/admin.html";
+					</script>
+				';
+			// }
+		
     }
 
     
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +54,7 @@
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<!-- <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" /> -->
 	</head>
 	<body class="login" style="background-image: url(iitg1.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
 		<div class="row">
@@ -66,12 +74,12 @@
 							</p>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="email" placeholder="Email id">
+									<input type="text" class="form-control" name="email" id="name" placeholder="Email id">
 									<i class="fa fa-user"></i> </span>
 							</div>
 							<div class="form-group form-actions">
 								<span class="input-icon">
-									<input type="password" class="form-control password" name="password" placeholder="Password">
+									<input type="password" class="form-control password" name="password" id="password" placeholder="Password">
 									<i class="fa fa-lock"></i>
 									 </span><a href="forgot-password.php">
 									Forgot Password ?
@@ -79,7 +87,7 @@
 							</div>
 							<div class="form-actions">
 								
-								<button type="submit" class="btn btn-primary pull-right" name="submit">
+								<button type="submit" class="btn btn-primary pull-right">
 									Login <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
@@ -91,33 +99,8 @@
 							</div>
 						</fieldset>
 					</form>
-
-					<!-- <div class="copyright">
-						</span><span class="text-bold text-uppercase"> Hospital Management System</span>.
-					</div> -->
-			
 				</div>
-
 			</div>
 		</div>
-		<!-- <script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="vendor/modernizr/modernizr.js"></script>
-		<script src="vendor/jquery-cookie/jquery.cookie.js"></script>
-		<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="vendor/switchery/switchery.min.js"></script>
-		<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-	
-		<script src="assets/js/main.js"></script>
-
-		<script src="assets/js/login.js"></script>
-		<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				Login.init();
-			});
-		</script> -->
-	
 	</body>
-	<!-- end: BODY -->
 </html>

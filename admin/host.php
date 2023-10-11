@@ -58,171 +58,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>manage</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        .container{
-            height: 100%;
-            /* background-color: rgb(0, 14, 103); */
-        }
-        .main{
-            display: flex;
-            flex-direction: column;
-            row-gap: 20px;
-        }
-        .form-section{
-            width: 50%;
-            background-color: rgb(0,14,120);
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 20px;
-        }
-        .form-section input,textarea{
-            width: 400px;
-            font-size: 20px;
-            margin: 10px;
-            display: block;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border:2px solid maroon;
-            outline: none;
-        }
-        .submit-btn{
-            background-color: rgb(8, 60, 81);
-            border: 2px solid rgb(159, 149, 242);
-            color: rgb(230, 152, 152);
-            font-size: 20px;
-            padding: 10px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        .add-candidate{
-            display: flex;
-            flex-direction: column;
-        }
-        .candidate-list{
-            width: 90vw;
-            /* display: flex; */
-            justify-content: center;
-            align-items:start;
-            column-gap: 30px;
-            padding: 20px;
-            margin: 0 auto;
-            background-color: green;
-            overflow-x: scroll;
-        }
-        .candidate-list .post-heading{
-            font-size: 26px;
-            color: aliceblue;
-        }
-        .post{
-            display: flex;
-            flex-direction: column;
-            row-gap: 30px;
-            justify-content: center;
-            align-items:center;
-            background-color: rgb(0, 14, 120);
-            padding: 15px;
-        }
-        .candidate{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            border: 1px solid blue;
-            border-radius: 5px;
-            background-color: rgb(38, 76, 108);
-            color: 20px;
-            font-weight: 500;
-            padding: 8px;
-            position: relative;
-        }
-        .candidate img{
-            width: 10%;
-            position: absolute;
-        }
-        .modify{
-            top: 2px;
-            right: 31px;
-            width: fit-content;
-            position: absolute;
-        }
-        .candidate .edit{
-            color:green ;
-            top: 2px;
-            left: 2px;
-            cursor: pointer;
-        }
-        .candidate .delete{
-            color: red;
-            top: 2px;
-            right: 2px;
-            cursor: pointer;
-        }
-        .navbar{
-            display: flex;
-            background-color: rgb(96, 140, 179);
-            height: 100px;
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            color: azure;
-            font-size: 30px;
-        }
-        .navbar .logout img{
-            height: 55px;
-            border: 1px solid black;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-        .start-btn{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .start-voting{
-            padding: 12px 22px;
-            background-color: rgb(11, 189, 238);
-            border: 1px solid grey;
-            border-radius: 30px;
-            font-size: 20px;
-            font-weight: 700;
-            outline: none;
-            cursor: pointer;
-        }
-        .child-btn{
-            /* height: 10%; */
-            position: absolute;
-            background-color: rgb(182, 182, 182);
-            border: 1px solid rgb(117, 117, 117);
-            padding:2%;
-        }
-        .candidate-post{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 400px;
-        }
-        .candinate-name{
-            /* border: 1px solid blue; */
-            /* background-color: rgb(0, 60, 110); */
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: whitesmoke;
-            font-weight: 500;
-            /* padding: 10px; */
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="host.css">
 </head>
     <body>
         <div class="container">
@@ -249,12 +85,17 @@
                     </form>
                 </div>
             </div>
-
+            <div class="start-btn">
+                    <button class="start-voting" onclick="">Start Election</button>
+            </div>
+            <div class="manage" id="manage" style="display: flex;">
+                <div class="addCandidate" onclick="addCandidate()">Add candidate</div>
+                <div class="manageCandidate" id="manageCandidate" onclick="manageCandidate()">Manage candidate</div>
+            </div>
+            <div class="manage-main"></div>
             <div class="main" id="main">
-                <div class="start-btn">
-                    <button class="start-voting">Start Election</button>
-                </div>
-                <div class="form-section">
+                <div class="manage-add"></div>
+                <div class="form-section" id="formsection" style="display: none;">
                     <form action="./host.php" method="post" class="add-candidate">
                         <input type="text" name="post" id="post" placeholder="Post Name">
                         <input type="text" name="name" id="name" placeholder="Candidate Name">
@@ -265,7 +106,8 @@
                         <button class="submit-btn" type="submit">add</button>
                     </form>
                 </div>
-                <div class="candidate-list" id="candidate-list">
+                <div class="manage-list"></div>
+                <div class="candidate-list" id="candidate-list" style="display: none;">
                     <div class="candidate-post">
                     <?php
                         $diffPost = "select distinct Post from candidates";
@@ -390,6 +232,41 @@
         if(st.includes("postName")){
             y = document.getElementById("po");
             y.style.display = "block";
+        }
+        console.log(st.includes("postName"));
+    </script>
+    <script>
+        //addCandidate
+        var i = 1;
+        function addCandidate(){
+            
+            document.getElementById("formsection").style.display="flex";
+            document.getElementById("manage").style.display="none";
+            // console.log(`clicked ${i++}`);
+        }
+
+        // manageCandidate
+
+        function manageCandidate(){
+            // document.getElementById('manageCandidate').style.borderStyle = 'inset';
+            x = document.getElementById("candidate-list");
+            x.style.display="block";
+            document.getElementById("manage").style.display="none";
+            // console.log(`clicked ${i++}`);
+            // if(x.style.display==="block"){
+            //     manageCandidate();
+            //     console.log("call again by the function itself")
+            // }
+
+            window.location = `./host.php?postName`;
+        }
+    </script>
+    <script>
+        st = window.location.href;
+        if(st.includes("postName")){
+            y = document.getElementById("candidate-list");
+            y.style.display = "block";
+            document.getElementById("manage").style.display="none";
         }
         console.log(st.includes("postName"));
     </script>
