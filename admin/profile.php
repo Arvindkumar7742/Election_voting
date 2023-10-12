@@ -25,7 +25,10 @@
             <?php
                 require("../forms/_dbconnect.php");
                 session_start();
-                $email=$_SESSION['email'];
+                if(!isset($_SESSION['username'])){
+                    
+                    $email=$_SESSION['username'];
+                  }
                 $sql="select * from admin where email='$email'";
                 $result=mysqli_query($conn,$sql);
                 if($row=mysqli_fetch_assoc($result)){
