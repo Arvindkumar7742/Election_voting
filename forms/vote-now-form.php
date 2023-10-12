@@ -10,7 +10,7 @@
             if($row==1){
                 session_start();
                 $_SESSION['email_candidate_vote']=$email;
-                header("location:/ELECTION_VOTING/Live_voting/live.php");
+                header("location:../Live_voting/live.php");
             }
         else{
 			echo '<script>alert("Invalid credintial!");</script>';

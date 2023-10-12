@@ -39,6 +39,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$email_pass = mysqli_fetch_assoc($query);
 				$db_pass = $email_pass['password'];
 				$_SESSION['username'] = $email_pass['email'];
+				$_SESSION['email'] = $email_pass['email'];
 				// $pass_decode = password_verify($password,$db_pass);
 				$pass_decode = ($password==$db_pass);
 				if($pass_decode){
