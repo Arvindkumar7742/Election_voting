@@ -1,16 +1,30 @@
 <?php
+session_start();
+  include("_dbconnect.php");
+      $sql="select * from tempvoting where sn=1";
+      $result=mysqli_query($conn,$sql);
+      $row=mysqli_num_rows($result);
+      if($row==1){
+      }
+      else{
+      header('location:index.php');
+      }
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        include("_dbconnect.php");
         $email=$_POST['email'];
         $password=$_POST['password'];
-            $sql="select *from voters where email='$email' and password='$password'";
+        $_SESSION['voter']=$email;
+            $sql="select * from voters where email='$email' and password='$password'";
             $result=mysqli_query($conn,$sql);
-            $row=mysqli_num_rows($result);
-            echo"hello ji";
-            if($row==1){
-                session_start();
-                $_SESSION['email_candidate_vote']=$email;
-                header("location:../Live_voting/live.php");
+            $total=mysqli_num_rows($result);
+            if($total>0){
+                $row=mysqli_fetch_assoc($result);
+                $is_voted=$row['is_voted'];
+                if($is_voted==0){
+                header("location:/Live_voting/live.php?email=$email");
+                }
+                else{
+                    echo '<script>alert("YOU ALREADY VOTED! YOU CANNOT VOTE AGAIN!");</script>';
+                }
             }
         else{
 			echo '<script>alert("Invalid credintial!");</script>';
@@ -23,7 +37,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>voting on</title>
+    <title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
     <style>
       *{
     padding: 0;
@@ -71,7 +86,7 @@ img{
     <div class="container" >
         <form method="post">
           <h2>Welcome to IITG ELECTION <span style="color: red;">LIVE</span> voting</h2>
-          <p>Please log in to vote your candidates</p>
+          <p>Please log in to vote your candidate</p>
             <div class="mb-3">
               <label for="exampleInputEmail1"  class="form-label">Email address</label>
               <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

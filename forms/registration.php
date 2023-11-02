@@ -3,6 +3,10 @@
 	$showerror=false;
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
+		if($_POST["ac_id"]!="IITG123"&&$_POST['iitg_password']!="123456"){
+			echo '<script>alert("IITG comunutity id and password is not matched! Please contact to the authorithity.");	window.location = "registration.php"</script>';
+			return ;
+		}
         include("_dbconnect.php");
         $fullname=$_POST['full_name'];
 		$adress=$_POST['address'];
@@ -25,7 +29,7 @@
             }
         }
         else{
-            echo '<script>alert("Password is not matched to the original password. Try again!");</script>';
+            echo '<script>alert("Password is not matched to the original password. Try again!");window.location = "registration.php"</script>';
         }
       }
     }
@@ -36,7 +40,8 @@
 <html lang="en">
 
 	<head>
-		<title>IITG ELECTIONS</title>
+	<title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -53,7 +58,7 @@
 	<body class="login" style="background-image: url(iitg1.jpg); background-repeat: no-repeat; background-size: 100% 140%; ">
 	<?php
         if($showalert){
-	echo '<script>alert("Regestration done you can log in now!");</script>';
+	echo '<script>alert("Regestration done you can log in now!");window.location = "admin-form.php"</script>';
 }
     ?>
 		<!-- start: REGISTRATION -->
@@ -80,6 +85,20 @@
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="city" placeholder="City" required>
+							</div>
+							<p>
+								Enter IITG credential to register into the portal:
+							</p>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" name="ac_id" id="ac_id" onBlur="userAvailability()"  placeholder="IITG Community id" required>
+									<i class="fa fa-envelope"></i> </span>
+									 <span id="user-availability-status1" style="font-size:12px;"></span>
+							</div>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="password" class="form-control" id="iitg_password" name="iitg_password" placeholder="IITG password" required>
+									<i class="fa fa-lock"></i> </span>
 							</div>
 							<p>
 								Enter your account details below:

@@ -1,9 +1,6 @@
 <?php
     require("../forms/_dbconnect.php");
-
 ?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
 
-    <title>IITG ELECTION</title>
+    <title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
   </head>
   <body style="background-color: #e6f3ff;">
     <h1 style="text-align: center;">List of all voters for your election</h1>

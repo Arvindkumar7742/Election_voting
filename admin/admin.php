@@ -9,8 +9,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
     <style>
         *{
             padding: 0;
@@ -181,19 +181,8 @@
             <a class="logout-icon" href="logout.php"><img src="./images/icons8-logout-50.png" alt="logout"></a>
         </div>
         <div class="container">
-
-            <!-- <div class="admin-profile child">your profile
-                <a href=""><img src="./images/arrow.png" alt="arrow"></a>
-            </div>
-            <div class="host-election child">host an election
-                <a href="host.php"><img src="./images/arrow.png" alt="arrow"></a>
-            </div>
-            <div class="voters child">voter section
-                <a href=""><img src="./images/arrow.png" alt="arrow"></a>
-            </div> -->
-          
             <a href="profile.php"> <div><button class="admin-btn">Your profile        <i class="fa fa-arrow-right"></i></button></div> </a> 
-            <a href="host.php"> <div><button class="cand-btn">Host an election <i class="fa fa-arrow-right"></i></button></div> </a> 
+            <a href="host_handle.php"> <div><button class="cand-btn">Host an election <i class="fa fa-arrow-right"></i></button></div> </a> 
          <a href="voter.php"> <div><button class="vote-btn">votersection   <i class="fa fa-arrow-right"></i></button></div> </a>   
 
         </div>
