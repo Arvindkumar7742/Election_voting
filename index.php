@@ -1,9 +1,13 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -173,8 +177,16 @@ body{
     <div class="wrapper">
         <h2 class="heading">Welcome to IITG Elections</h2>
             <a href="./forms/admin-form.php"><button class="admin-btn">Admin Log in <i class="fa fa-arrow-right"></i></button></a> 
-        <a href="./forms/voter-form.php"><button class="cand-btn">Voter Log in <i class="fa fa-arrow-right"></i></button></a> 
-     <a href="forms/vote-now-form.php"><div class="vote-start"><div>Voting is Ongoing</div><button class="vote-btn">Vote Now <i class="fa fa-arrow-right"></i></button></div></a>   
-    </div>
+        <a href="./forms/voter-form.php"><button class="cand-btn">Voter Log in <i class="fa fa-arrow-right"></i></button></a>
+        <?php
+  include("./forms/_dbconnect.php");
+  $sql="select * from tempvoting where sn=1";
+  $result=mysqli_query($conn,$sql);
+  $row=mysqli_num_rows($result);
+  if($row==1){
+    echo '<div class="vote-start"><div>Voting is Ongoing</div><a href="forms/vote-now-form.php"><button class="vote-btn">Vote Now <i class="fa fa-arrow-right"></i></a></button></div>';
+  }
+        ?>
+</div>
 </body>
 </html>

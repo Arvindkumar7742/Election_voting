@@ -1,9 +1,16 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['voter'])){
+        header('location:../forms/vote-now-form.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
  <style>
     body{
         padding: 0;
@@ -44,8 +51,7 @@
             <div>
              <?php
                 require("../forms/_dbconnect.php");
-                session_start();
-                $email=$_SESSION['email_candidate_vote'];
+                $email=$_GET['email'];
                 $sql="select * from voters where email='$email'";
                 $result=mysqli_query($conn,$sql);
                 if($row=mysqli_fetch_assoc($result)){
@@ -60,39 +66,28 @@
         </div>
         <div class="cards" >
             <p style="padding-left: 8px;border-radius: 5px; margin-left:90px;background-color: rgb(233, 193, 134); border: 1px solid rgb(180, 143, 87); line-height: 30px;font-size: 20px; line-break: loose;">
-                <span style="color: red; font-size: 25px;" >Important!</span> Welcome to IITG election.For voting you tap for your candidate which you want to vote.<br><span style="color: red; font-size: 25px;">Be carefull!</span> Once you tap
-            on the vote button for your selected candidate then you can not this candidate list.So your please vote carefully.</p>
-            <div class="card1" style="background-color:lightblue; margin-left:90px ;margin-top: 5px; display: flex; width: 700px;min-height: 290px; border-radius: 10px;">
+                <span style="color: red; font-size: 25px;" >Important!</span> Welcome to IITG election.For voting you tap for your candidate which you want to vote.</p>
+         <?php
+            $sql="SELECT * FROM `candidates`";
+            $result=mysqli_query($conn,$sql);
+
+            while($row=mysqli_fetch_assoc($result)){
+                $post=$row['Post'];
+                $name=$row['Name'];
+                $dept=$row['dept'];
+                $rollno=$row['rollno'];
+                echo '<div class="card1" style="background-color:lightblue; margin-left:90px ;margin-top: 5px; display: flex; width: 700px;min-height: 290px; border-radius: 10px;">
                 <img src="profile_icon.jpg" height="200px" width="200px">
                 <div class="res" style="font-style:oblique;" >
-                    <h1 style="text-align: center; ">PG Senator</h1>
-                    <h3 style="padding-left: 30px;" >Name : Harish kumar</h3>
-                    <h3 style="padding-left: 30px;">Dept : Maths</h3>
-                    <h3 style="padding-left: 30px;">Age  :20</h3>
-                    <button style="margin-left: 340px;" class="button">Vote</button>
+                    <h1 style="text-align: center; ">'.$post.'</h1>
+                    <h3 style="padding-left: 30px;" >Name : '.$name.'</h3>
+                    <h3 style="padding-left: 30px;">Dept : '.$dept.'</h3>
+                    <h3 style="padding-left: 30px;">Roll No  :'.$rollno.'</h3>
+                   <a href="live_vote_help.php?email='.$email.'&cand_id='.$rollno.'"><button style="margin-left: 340px;" class="button">Vote</button></a>
                 </div>
-            </div>
-            <div class="card1" style="background-color:lightblue; margin-left:90px ;margin-top: 5px; display: flex; width: 700px;min-height: 290px; border-radius: 10px;">
-                <img src="profile_icon.jpg" height="200px" width="200px">
-                <div class="res" style="font-style:oblique;" >
-                    <h1 style="text-align: center; ">PG Senator</h1>
-                    <h3 style="padding-left: 30px;" >Name : Harish kumar</h3>
-                    <h3 style="padding-left: 30px;">Dept : Maths</h3>
-                    <h3 style="padding-left: 30px;">Age  :20</h3>
-                    <button style="margin-left: 340px;" class="button">Vote</button>
-                </div>
-            </div>
-            <div class="card1" style="background-color:lightblue; margin-left:90px ;margin-top: 5px; display: flex; width: 700px;min-height: 290px; border-radius: 10px;">
-                <img src="profile_icon.jpg" height="200px" width="200px">
-                <div class="res" style="font-style:oblique;" >
-                    <h1 style="text-align: center; ">PG Senator</h1>
-                    <h3 style="padding-left: 30px;" >Name : Harish kumar</h3>
-                    <h3 style="padding-left: 30px;">Dept : Maths</h3>
-                    <h3 style="padding-left: 30px;">Age  :20</h3>
-                    <button style="margin-left: 340px;" class="button">Vote</button>
-                </div>
-            </div>
-        
+            </div>';
+            }
+        ?>     
         </div>
    </div>
 </body>

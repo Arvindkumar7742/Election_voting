@@ -20,7 +20,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Voter-Login</title>
+	<title>IITG ELECTIONS</title>
+    <link rel="icon" type="image/x-icon" href="./IITG_logo.png">
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -58,9 +59,6 @@
 								<span class="input-icon">
 									<input type="password" class="form-control password" name="password" placeholder="Password">
 									<i class="fa fa-lock"></i>
-									 </span><a href="forgot-password.php">
-									Forgot Password ?
-								</a>
 							</div>
 							<div class="form-actions">
 								

@@ -47,14 +47,26 @@
 }
 .candidate-list{
     width: 90vw;
-    /* display: flex; */
+    display: flex;
+    position: relative;
     justify-content: center;
     align-items:start;
     column-gap: 30px;
-    padding: 20px;
+    padding-top: 70px;
+    /* padding: 20px; */
     margin: 0 auto;
     background-color: green;
     overflow-x:hidden;
+}
+.butt{
+    background-color: rgb(138, 243, 243);
+    color: rgb(19, 23, 25);
+    width: fit-content;
+    display: flex;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
 }
 .candidate-list .post-heading{
     font-size: 26px;
